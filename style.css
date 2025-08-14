@@ -283,8 +283,8 @@ a:hover {
   }
 
   .intro h1 {
-    font-size: 120px;
-    transform: translateX(-120px) translateY(60px);
+    font-size: 80px;
+    transform: translateX(-100px) translateY(100px);
     position: absolute;
     text-align: center;
   }
@@ -299,7 +299,7 @@ a:hover {
 
   .intro p {
     font-size: 14px;
-    transform: translateX(120px) translateY(150px);
+    transform: translateX(100px) translateY(150px);
     position: absolute;
     margin: 20px 10px;
     max-width: 180px;
