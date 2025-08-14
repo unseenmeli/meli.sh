@@ -1,50 +1,154 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Meli's Website</title>
-    <link rel="stylesheet" type="text/css" href="../style.css">
-</head>
-<body class="posts-body">
-    <Header class="posts-header">
-        <a id="goback" href="../index.html">
-            <h2>
-                Dave asanidze (Meli)
-            </h2>
-        </a>
-    </Header>
-    <main class="post-main">
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+  </head>
+  <body>
+    <header>
+      <a id="goback" href="../index.html">
+        <h2>Dave asanidze (Meli)</h2>
+      </a>
+    </header>
+    <div class="post-div">
+      <main class="post-main">
         <h1>How I built my app builder!</h1>
         <h6>August 12</h6>
-        <p>Hello there! Here I am going to explain how I managed to build an app builder using React Native X InstantDB when I had no experience in either. Shall we?</p>
-        <p>Well before anything let me explain what OneShot app is! The OneShot app allows users to describe an app idea in plain text, which then gets transformed into executable React Native code through an AI server. This generated code is stored as a string in a database and later evaluated and executed within the app itself, creating a "meta-app" experience where apps can create and run other apps.</p>
-        <p>SOOO, as you might guess, this was not possible without using external help, such as tutorials, docs etc. What helped me a lot to get started was using <a href="https://expo.dev/blog/what-if-usestate-was-your-backend">tutorial</a> by<strong> Stepan Parunashvili</strong>. To get started I had to understand how React Native and InstantDB works. The tutorial I mentioned helped me with React Native and for Instant? An essay made by the <a href="https://stopa.io/post/296">man himself!</a></p>
+        <p>
+          Hello there! Here I am going to explain how I managed to build an app builder using React Native X InstantDB
+          when I had no experience in either. Shall we?
+        </p>
+        <p>
+          Well before anything let me explain what OneShot app is! The OneShot app allows users to describe an app idea
+          in plain text, which then gets transformed into executable React Native code through an AI server. This
+          generated code is stored as a string in a database and later evaluated and executed within the app itself,
+          creating a "meta-app" experience where apps can create and run other apps.
+        </p>
+        <p>
+          SOOO, as you might guess, this was not possible without using external help, such as tutorials, docs etc. What
+          helped me a lot to get started was using
+          <a href="https://expo.dev/blog/what-if-usestate-was-your-backend">tutorial</a> by<strong>
+            Stepan Parunashvili</strong
+          >. To get started I had to understand how React Native and InstantDB works. The tutorial I mentioned helped me
+          with React Native and for Instant? An essay made by the <a href="https://stopa.io/post/296">man himself!</a>
+        </p>
         <p>After going through a few tutorials, I was ready, willing to try!</p>
-        <p>It started off pretty simple, importing View and Text and experimenting with it (which you could probably tell by the design xD)-- here I also learnt how cool Tailwind CSS is! Now that I used normal CSS to style pages, it just felt weird, once you go Tailwind you can never go back :D. Anyhow after creating <strong>A MASTERPIECE OF A DESIGN</strong> I decided it is time to initialize InstantDB into this project.</p>
-        <p>Starting off I didn't know how to do anything, so I decided to go through InstantDB's documentation-- they have everything thoroughly explained, starting from installing InstantDB into your project and finishing with platform features, such as managing users, Instant CLI etc. You can check this out at <a href="instantdb.com/docs">link!</a></p>
-        <p>To get into details-- at first I was saving everything in my app locally using useState, even the app itself doesn't have routing, it is just using useState to set page views. When I started using Instant-- I just saved the stuff in their server using my local items.</p>
-        <p>There is no magic to building this kind of apps, dedication and understanding. So let's target the very question you have while reading this essay, how does the evaluation really work?</p>
-        <p>Well the journey begins when a user goes into the Add App section, which looks like this in the app: </p>
-        <img style="width: 30%;" src="../media/post1/Simulator Screenshot - iPhone 16 Pro - 2025-08-06 at 08.30.59.png" />
-        <p>In here you write a name for your app (so you can find it later on the home page!) and a description-- now this is the fun part! The description is basically your wish list for what the app should do. I send this info to an AI that's chilling on my express server. Now here's the thing-- I had to be pretty strict with the AI's instructions, only letting it use certain imports and functions that I knew would work. Trust me, I learned this the hard way after some... interesting crashes xD</p>
-        <p>Once the AI does its magic and generates the code, I store the whole thing as a string in InstantDB. Each app gets saved with its name, description, the generated code (literally just a big string of text), an optional logo if you're feeling fancy, and whoever created it. The cool part? I'm not actually saving files or anything complicated-- just treating code like any other text data. It's kinda wild when you think about it!</p>
-        <p>The saved data then is accessible on the home page: </p>
-        <img style="width: 30%;" src="../media/post1/Simulator Screenshot - iPhone 16 Pro Max - 2025-08-08 at 16.19.01.png"/>
-        <p>Now when you tap on any app tile, boom-- you're in the AppDetail page. This is where things get REALLY interesting! So remember that code string we saved? Well, the AppDetail component grabs it and passes it to my code executor utility. This little utility is basically the heart of everything-- it takes that string of code and somehow makes it... actually run?? Like for real!</p>
+        <p>
+          It started off pretty simple, importing View and Text and experimenting with it (which you could probably tell
+          by the design xD)-- here I also learnt how cool Tailwind CSS is! Now that I used normal CSS to style pages, it
+          just felt weird, once you go Tailwind you can never go back :D. Anyhow after creating
+          <strong>A MASTERPIECE OF A DESIGN</strong> I decided it is time to initialize InstantDB into this project.
+        </p>
+        <p>
+          Starting off I didn't know how to do anything, so I decided to go through InstantDB's documentation-- they
+          have everything thoroughly explained, starting from installing InstantDB into your project and finishing with
+          platform features, such as managing users, Instant CLI etc. You can check this out at
+          <a href="instantdb.com/docs">link!</a>
+        </p>
+        <p>
+          To get into details-- at first I was saving everything in my app locally using useState, even the app itself
+          doesn't have routing, it is just using useState to set page views. When I started using Instant-- I just saved
+          the stuff in their server using my local items.
+        </p>
+        <p>
+          There is no magic to building this kind of apps, dedication and understanding. So let's target the very
+          question you have while reading this essay, how does the evaluation really work?
+        </p>
+        <p>Well the journey begins when a user goes into the Add App section, which looks like this in the app:</p>
+        <img
+          style="width: 30%"
+          src="../media/post1/Simulator Screenshot - iPhone 16 Pro - 2025-08-06 at 08.30.59.png"
+        />
+        <p>
+          In here you write a name for your app (so you can find it later on the home page!) and a description-- now
+          this is the fun part! The description is basically your wish list for what the app should do. I send this info
+          to an AI that's chilling on my express server. Now here's the thing-- I had to be pretty strict with the AI's
+          instructions, only letting it use certain imports and functions that I knew would work. Trust me, I learned
+          this the hard way after some... interesting crashes xD
+        </p>
+        <p>
+          Once the AI does its magic and generates the code, I store the whole thing as a string in InstantDB. Each app
+          gets saved with its name, description, the generated code (literally just a big string of text), an optional
+          logo if you're feeling fancy, and whoever created it. The cool part? I'm not actually saving files or anything
+          complicated-- just treating code like any other text data. It's kinda wild when you think about it!
+        </p>
+        <p>The saved data then is accessible on the home page:</p>
+        <img
+          style="width: 30%"
+          src="../media/post1/Simulator Screenshot - iPhone 16 Pro Max - 2025-08-08 at 16.19.01.png"
+        />
+        <p>
+          Now when you tap on any app tile, boom-- you're in the AppDetail page. This is where things get REALLY
+          interesting! So remember that code string we saved? Well, the AppDetail component grabs it and passes it to my
+          code executor utility. This little utility is basically the heart of everything-- it takes that string of code
+          and somehow makes it... actually run?? Like for real!
+        </p>
         <p>Here's what's happening behind the scenes (it took me forever to figure this out):</p>
-        <div class="div-for-details">
-            <p>* First, it parses the code string to find the actual React component hiding in there</p>
-            <p>* Then it creates this special function context-- basically a sandbox where the code can run without breaking everything else</p>
-            <p>* It injects all the stuff the code needs-- React Native components, hooks, the works!</p>
-            <p>* Wraps everything in what I call a "please don't crash" wrapper (okay, it's actually a safe execution environment but you get the idea)</p>
-            <p>* And finally... it returns an actual, working React component! Like magic!</p>
+        <div>
+          <p>* First, it parses the code string to find the actual React component hiding in there</p>
+          <p>
+            * Then it creates this special function context-- basically a sandbox where the code can run without
+            breaking everything else
+          </p>
+          <p>* It injects all the stuff the code needs-- React Native components, hooks, the works!</p>
+          <p>
+            * Wraps everything in what I call a "please don't crash" wrapper (okay, it's actually a safe execution
+            environment but you get the idea)
+          </p>
+          <p>* And finally... it returns an actual, working React component! Like magic!</p>
         </div>
-        <p>Once all that happens, the generated app just... runs! It's got access to useState for keeping track of stuff, all the React Native UI components to look pretty, and even device APIs like vibration (because who doesn't love a good buzz, right?). The crazy part is-- it's running inside OneShot but feels like its own separate app. It's like apps having baby apps... okay that sounds weird but you know what I mean! :D</p>
-        <p>Obviously, letting random code run on your phone is pretty risky, so I had to build in some serious restrictions. The generated apps can't access your file system, can't make network requests, and definitely can't mess with other apps. All the data stays in React state, which means it disappears when you close the app. Think of it as a sandbox-- the code can play around but it can't escape. This also means creating to do's won't be really useful since it is going to get deleted once you close the app. The fix to this is adding a database for each app, which is pretty simple using instantDB but i am just lazy :D.</p>
-        <p>The core innovation here is treating code as data. Instead of going through compilation and deployment, we just store code as strings and evaluate them on the fly. This completely changes how we think about app development. No more waiting for app store approvals or dealing with build processes-- just instant execution. What really blew my mind was realizing that React components are just functions that return JSX. Once you understand that, injecting them dynamically becomes possible (though definitely not trivial!). The evaluated code needs to return a valid React component that plays nicely with React Native's component tree, which took a lot of trial and error to get right.</p>
-        <p>This approach flips traditional app development on its head. Instead of writing code, you describe what you want. Instead of learning syntax, you explain your idea. The AI handles the implementation while you focus on creativity. Every generated app is unique, created on-demand based on what you asked for. Sure, there are trade-offs. Generated apps can't save data permanently, can't make API calls, and can't access advanced device features. But for simple tools, games, and experiments, this limitation is worth the instant gratification of seeing your idea come to life in seconds.</p>
-        <p>The biggest challenges were ensuring the AI generates working code (it doesn't always cooperate), handling errors gracefully when evaluation fails, and keeping performance decent when running complex generated apps. I solved these through very specific AI instructions, tons of error handling, and limiting what generated apps can actually do.</p>
-        <p>Building OneShot taught me that the boundaries between developer and user, between code and data, are more fluid than we think. By combining AI's code generation abilities with JavaScript's dynamic nature, we can create systems where apps spawn other apps instantly. Is it perfect? Definitely not. Is it practical for production apps? Probably not. But is it cool that someone with an idea can create a working app in seconds without knowing how to code? Absolutely!</p>
-        <p>Thanks for reading through my journey of building this meta-app! If you're interested in trying OneShot or want to chat about the technical details, feel free to reach out. And remember-- if you have a crazy app idea, why not give it a shot? The worst that can happen is... well, actually nothing because of all that sandboxing I mentioned :D. (the links will be on top of the page and for the socials? home page)</p>
-        <p style="padding-bottom: 50px;">Thank you for your time! As for the start and the journey, Meli!</p>
-    </main>
-</body>
+        <p>
+          Once all that happens, the generated app just... runs! It's got access to useState for keeping track of stuff,
+          all the React Native UI components to look pretty, and even device APIs like vibration (because who doesn't
+          love a good buzz, right?). The crazy part is-- it's running inside OneShot but feels like its own separate
+          app. It's like apps having baby apps... okay that sounds weird but you know what I mean! :D
+        </p>
+        <p>
+          Obviously, letting random code run on your phone is pretty risky, so I had to build in some serious
+          restrictions. The generated apps can't access your file system, can't make network requests, and definitely
+          can't mess with other apps. All the data stays in React state, which means it disappears when you close the
+          app. Think of it as a sandbox-- the code can play around but it can't escape. This also means creating to do's
+          won't be really useful since it is going to get deleted once you close the app. The fix to this is adding a
+          database for each app, which is pretty simple using instantDB but i am just lazy :D.
+        </p>
+        <p>
+          The core innovation here is treating code as data. Instead of going through compilation and deployment, we
+          just store code as strings and evaluate them on the fly. This completely changes how we think about app
+          development. No more waiting for app store approvals or dealing with build processes-- just instant execution.
+          What really blew my mind was realizing that React components are just functions that return JSX. Once you
+          understand that, injecting them dynamically becomes possible (though definitely not trivial!). The evaluated
+          code needs to return a valid React component that plays nicely with React Native's component tree, which took
+          a lot of trial and error to get right.
+        </p>
+        <p>
+          This approach flips traditional app development on its head. Instead of writing code, you describe what you
+          want. Instead of learning syntax, you explain your idea. The AI handles the implementation while you focus on
+          creativity. Every generated app is unique, created on-demand based on what you asked for. Sure, there are
+          trade-offs. Generated apps can't save data permanently, can't make API calls, and can't access advanced device
+          features. But for simple tools, games, and experiments, this limitation is worth the instant gratification of
+          seeing your idea come to life in seconds.
+        </p>
+        <p>
+          The biggest challenges were ensuring the AI generates working code (it doesn't always cooperate), handling
+          errors gracefully when evaluation fails, and keeping performance decent when running complex generated apps. I
+          solved these through very specific AI instructions, tons of error handling, and limiting what generated apps
+          can actually do.
+        </p>
+        <p>
+          Building OneShot taught me that the boundaries between developer and user, between code and data, are more
+          fluid than we think. By combining AI's code generation abilities with JavaScript's dynamic nature, we can
+          create systems where apps spawn other apps instantly. Is it perfect? Definitely not. Is it practical for
+          production apps? Probably not. But is it cool that someone with an idea can create a working app in seconds
+          without knowing how to code? Absolutely!
+        </p>
+        <p>
+          Thanks for reading through my journey of building this meta-app! If you're interested in trying OneShot or
+          want to chat about the technical details, feel free to reach out. And remember-- if you have a crazy app idea,
+          why not give it a shot? The worst that can happen is... well, actually nothing because of all that sandboxing
+          I mentioned :D. (the links will be on top of the page and for the socials? home page)
+        </p>
+        <p style="padding-bottom: 50px">Thank you for your time! As for the start and the journey, Meli!</p>
+      </main>
+    </div>
+  </body>
+</html>
