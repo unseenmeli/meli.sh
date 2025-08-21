@@ -193,6 +193,7 @@ a:hover {
 .links {
   display: flex;
   gap: 24px;
+  z-index: 1;
 }
 
 .links a {
@@ -467,4 +468,5 @@ a:hover {
 .for-reader {
   position: absolute;
   right: 0;
+  z-index: -1;
 }
