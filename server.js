@@ -83,16 +83,46 @@ app.get("/health", (req, res) => {
   });
 });
 
+// Admin endpoint to clear all comments
+app.delete("/admin/clear-comments", (req, res) => {
+  const commentsPath = path.join(__dirname, "comments.json");
+  
+  try {
+    fs.writeFileSync(commentsPath, "{}");
+    res.json({ success: true, message: "All comments cleared" });
+  } catch (error) {
+    console.error("Error clearing comments:", error);
+    res.status(500).json({ error: "Failed to clear comments" });
+  }
+});
+
+// Get comments endpoint
+app.get("/comments.json", (req, res) => {
+  const commentsPath = path.join(__dirname, "comments.json");
+  
+  try {
+    if (fs.existsSync(commentsPath)) {
+      const data = fs.readFileSync(commentsPath, "utf8");
+      res.json(JSON.parse(data || "{}"));
+    } else {
+      res.json({});
+    }
+  } catch (error) {
+    console.error("Error reading comments:", error);
+    res.json({});
+  }
+});
+
 // Save comment endpoint
 app.post("/save-comment", (req, res) => {
   const { page, comment } = req.body;
-  
+
   if (!page || !comment) {
     return res.status(400).json({ error: "Page and comment required" });
   }
-  
+
   const commentsPath = path.join(__dirname, "comments.json");
-  
+
   try {
     // Read existing comments
     let comments = {};
@@ -100,21 +130,20 @@ app.post("/save-comment", (req, res) => {
       const data = fs.readFileSync(commentsPath, "utf8");
       comments = JSON.parse(data || "{}");
     }
-    
+
     // Initialize page array if doesn't exist
     if (!comments[page]) {
       comments[page] = [];
     }
-    
-    // Add new comment with timestamp
+
+    // Add new comment
     comments[page].push({
       text: comment,
-      timestamp: new Date().toISOString()
     });
-    
+
     // Write back to file
     fs.writeFileSync(commentsPath, JSON.stringify(comments, null, 2));
-    
+
     res.json({ success: true, message: "Comment saved" });
   } catch (error) {
     console.error("Error saving comment:", error);
