@@ -121,6 +121,7 @@ a:hover {
 
 .textcomp {
   width: 100%;
+  text-align: center;
 }
 
 .sizecomp {
@@ -162,6 +163,7 @@ a:hover {
 
 .main-index {
   flex: 1;
+  padding-bottom: 300px;
 }
 
 .contact {
@@ -263,11 +265,13 @@ a:hover {
 }
 
 #p-for-oneshot {
-  transform: translate(870px, -100px);
+  right: 0;
+  transform: translate(-360px, -100px);
 }
 
 #p-for-fuzzy {
-  transform: translate(1135px, -500px);
+  right: 0;
+  transform: translate(-90px, -500px);
 }
 
 @media (max-width: 480px) {
