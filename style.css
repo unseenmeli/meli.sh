@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  overscroll-behavior: none;
 }
 
 body {
@@ -445,10 +446,25 @@ a:hover {
   .post-main a {
     word-break: break-word;
   }
+
+  .reader-thing {
+    font-size: 18px !important;
+    transform: translate(-230px, 210px);
+  }
 }
 
 .reader-thing {
-  position: fixed;
+  position: absolute;
   font-size: 25px;
   font-weight: bold;
+  right: 50px;
+  top: 25px;
+  font-family: "Times New Roman", Times, serif;
+  color: #666;
+  opacity: 90%;
+}
+
+.for-reader {
+  position: absolute;
+  right: 0;
 }
