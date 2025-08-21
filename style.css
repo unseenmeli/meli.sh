@@ -470,3 +470,119 @@ a:hover {
   right: 0;
   z-index: -1;
 }
+
+.comment-section {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  margin-top: 50px;
+  background: white;
+}
+
+.in-comment {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.in-comment text {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.in-comment input {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px 20px;
+  border-radius: 15px;
+  border: 2px solid #e0e0e0;
+  background-color: white;
+  font-size: 16px;
+  font-family: "Times New Roman", Times, serif;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.in-comment input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.in-comment input:focus {
+  border-color: #5caa5e;
+  box-shadow: 0 4px 12px rgba(92, 170, 94, 0.2);
+  transform: translateY(-2px);
+}
+
+.in-comment input:hover {
+  border-color: #8eda90;
+}
+
+/* Comments Display Styles */
+.comments-display {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.comments-display h3 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  font-family: "Times New Roman", Times, serif;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#comments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.comment-item {
+  background: white;
+  border-radius: 15px;
+  padding: 20px 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.comment-item:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.comment-name {
+  font-size: 16px;
+  color: #666;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: monospace;
+}
+
+.comment-text {
+  font-size: 18px;
+  color: #444;
+  line-height: 1.6;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.no-comments {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 40px;
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 15px;
+  font-size: 16px;
+}

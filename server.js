@@ -2,10 +2,13 @@ const express = require("express");
 const WebSocket = require("ws");
 const http = require("http");
 const cors = require("cors");
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname));
 
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
@@ -78,6 +81,45 @@ app.get("/health", (req, res) => {
     activeUsers: getActiveCount(),
     totalConnections: userStatuses.size,
   });
+});
+
+// Save comment endpoint
+app.post("/save-comment", (req, res) => {
+  const { page, comment } = req.body;
+  
+  if (!page || !comment) {
+    return res.status(400).json({ error: "Page and comment required" });
+  }
+  
+  const commentsPath = path.join(__dirname, "comments.json");
+  
+  try {
+    // Read existing comments
+    let comments = {};
+    if (fs.existsSync(commentsPath)) {
+      const data = fs.readFileSync(commentsPath, "utf8");
+      comments = JSON.parse(data || "{}");
+    }
+    
+    // Initialize page array if doesn't exist
+    if (!comments[page]) {
+      comments[page] = [];
+    }
+    
+    // Add new comment with timestamp
+    comments[page].push({
+      text: comment,
+      timestamp: new Date().toISOString()
+    });
+    
+    // Write back to file
+    fs.writeFileSync(commentsPath, JSON.stringify(comments, null, 2));
+    
+    res.json({ success: true, message: "Comment saved" });
+  } catch (error) {
+    console.error("Error saving comment:", error);
+    res.status(500).json({ error: "Failed to save comment" });
+  }
 });
 
 const PORT = process.env.PORT || 3001;
