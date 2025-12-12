@@ -1,27 +1,5 @@
 // Comments with localStorage persistence and server sync
 document.addEventListener("DOMContentLoaded", () => {
-  // Project hover effects
-  const projects = [
-    { project: "geoarsh", description: "p-for-geo" },
-    { project: "weboneshot", description: "p-for-weboneshot" },
-    { project: "oneshot", description: "p-for-oneshot" },
-    { project: "fuzzy", description: "p-for-fuzzy" },
-  ];
-
-  projects.forEach(({ project, description }) => {
-    const projectElement = document.getElementById(project);
-    const descriptionElement = document.getElementById(description);
-
-    if (projectElement && descriptionElement) {
-      projectElement.addEventListener("mouseenter", () => {
-        descriptionElement.style.opacity = "1";
-      });
-
-      projectElement.addEventListener("mouseleave", () => {
-        descriptionElement.style.opacity = "0";
-      });
-    }
-  });
 
   // WebSocket for reader count
   const readerElement = document.getElementById("reader-count");

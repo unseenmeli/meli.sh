@@ -69,49 +69,39 @@ body {
   overflow: hidden;
 }
 
-.my-stuff {
-  display: flex;
-  justify-content: center;
-  height: 500px;
-}
-
-.inline-stuff h1 {
-  font-size: 60px;
-}
-
-.inline-stuff a {
-  display: inline-block;
-  text-decoration: none;
-}
-
-.inline-stuff h4 {
-  padding: 30px 0;
+.my-projects {
   text-align: center;
-  font-size: 25px;
-  width: 300px;
-  height: 25px;
-  background-color: white;
-  box-shadow: 0px 1px 10px black;
-  border-radius: 10px;
-  margin: 0;
+  padding: 60px 20px;
+  margin-bottom: 100px;
+}
+
+.my-projects h1 {
+  font-size: 60px;
+  margin-bottom: 40px;
+}
+
+.project-list {
   display: flex;
-  align-items: center;
   justify-content: center;
+  gap: 100px;
+  flex-wrap: wrap;
 }
 
-.inline-stuff div {
-  position: absolute;
-  display: flex;
-  gap: 50px;
-  transform: translateX(-525px);
+.project-item {
+  text-align: center;
 }
 
-#middle1 {
-  transform: translateY(150px) translateX(-80px);
+.project-item h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
-#middle2 {
-  transform: translateY(150px) translateX(80px);
+.project-note {
+  color: #888;
+  font-size: 16px;
+  margin: 5px 0;
+  font-style: italic;
+  max-width: 300px;
 }
 
 a {
@@ -229,56 +219,6 @@ a:hover {
   z-index: 1;
 }
 
-@keyframes moving {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(25px);
-  }
-}
-
-#geoarsh:hover,
-#weboneshot:hover,
-#oneshot:hover,
-#fuzzy:hover {
-  animation: moving 1s ease-in-out infinite alternate;
-}
-
-#p-for-geo,
-#p-for-weboneshot,
-#p-for-oneshot,
-#p-for-fuzzy {
-  font-size: 20px;
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-  padding: 12px 20px;
-  background-color: white;
-  box-shadow: 0px 0px 8px;
-  border-radius: 8px;
-  width: 200px;
-  color: #666;
-  transition: opacity 1s ease-in-out;
-}
-
-#p-for-geo {
-  transform: translate(90px, -500px);
-}
-
-#p-for-weboneshot {
-  transform: translate(360px, -100px);
-}
-
-#p-for-oneshot {
-  right: 0;
-  transform: translate(-360px, -100px);
-}
-
-#p-for-fuzzy {
-  right: 0;
-  transform: translate(-90px, -500px);
-}
 
 @media (max-width: 480px) {
   /* Prevent horizontal scrolling */
@@ -323,44 +263,6 @@ a:hover {
     object-fit: cover;
   }
 
-  /* Projects section */
-  .my-stuff {
-    height: auto;
-    padding: 20px 10px;
-  }
-
-  .inline-stuff h1 {
-    font-size: 80px;
-    text-align: center;
-  }
-
-  .inline-stuff div {
-    position: relative;
-    transform: none;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 20px;
-  }
-
-  .inline-stuff h4 {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  #middle1,
-  #middle2 {
-    transform: none;
-  }
-
-  /* Hide project descriptions on mobile */
-  #p-for-geo,
-  #p-for-weboneshot,
-  #p-for-oneshot,
-  #p-for-fuzzy {
-    display: none;
-  }
 
   /* Text sections */
   .sizecomp {
@@ -398,13 +300,6 @@ a:hover {
     width: 100%;
   }
 
-  /* Remove hover animations on mobile */
-  #geoarsh:hover,
-  #weboneshot:hover,
-  #oneshot:hover,
-  #fuzzy:hover {
-    animation: none;
-  }
 
   /* Post/Blog page styles */
   .post-div {
