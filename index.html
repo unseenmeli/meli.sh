@@ -9,10 +9,12 @@
     <img class="for-reader" src="./media/index/—Pngtree—color design vector wavy lines_20819.png" />
     <main class="main-index">
       <div class="reader-thing"><text id="reader-count"></text><text> readers</text></div>
+      <a href="/" class="home-btn">← HOME</a>
       <img class="image-index" src="./media/index/trying.png" />
       <div class="intro">
-        <h1>Meli</h1>
         <h2>Welcome to my website</h2>
+        <h1>Meli</h1>
+        <a href="#projects" class="shall-we-btn">Shall we?</a>
         <p>
           There's not much I could say in about me, for I believe the truth lays upon discovery of spark in one another
           (this was an attempt to be philosophical). Well I love music, programing, fashion, romantic movies and a lot
@@ -21,53 +23,61 @@
         </p>
       </div>
 
-      <div class="my-projects">
-        <h1>My projects</h1>
-        <div class="project-list">
-          <div class="project-item">
-            <a href="https://geoarsh.fly.dev/"><h3>geo arsh</h3></a>
-            <p class="project-note">my first ever project-- built for an Association! pure html with django framework using python and js.</p>
+      <div class="content-view" style="display: none;">
+        <div class="split-container">
+          <div class="left-section">
+            <div class="my-projects" id="projects">
+              <h1>My projects</h1>
+              <div class="project-list">
+                <div class="project-item">
+                  <a href="https://geoarsh.fly.dev/"><h3>geo arsh</h3>
+                  <p class="project-note">my first ever project, built for an association to help them manage their community and events. started with pure html and css, then integrated django framework for the backend functionality. used python for server-side logic and javascript for interactive features on the frontend.</p></a>
+                </div>
+                <div class="project-item">
+                  <a href="https://phsycologos.vercel.app"><h3>phsycologos</h3>
+                  <p class="project-note">created for the psychology association to showcase their work and connect with students. built with next.js for fast page loads and better seo, typescript for cleaner code, and tailwind for styling. deployed on vercel for seamless updates.</p></a>
+                </div>
+                <div class="project-item">
+                  <a href="https://meli.sh"><h3>meli.sh</h3>
+                  <p class="project-note">this website! my personal portfolio where i share my projects, essays, and thoughts. features real-time visitor tracking so you can see how many people are browsing, and a comment system where visitors can leave their thoughts. built using node.js for the websocket backend and pure html/css for full control over the design.</p></a>
+                </div>
+                <div class="project-item">
+                  <h3>lime</h3>
+                  <p class="project-note">upcoming startup with lieh, focused on helping starter bands and independent artists get discovered and build their audience. the platform will connect musicians with listeners who actually care about finding new music. built with typescript and tailwind for the frontend experience, and django backend with python for handling user data and music recommendations.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="project-item">
-            <a href="https://phsycologos.vercel.app"><h3>phsycologos</h3></a>
-            <p class="project-note">created for association phsycologos. built with next.js using typescript and tailwind.</p>
-          </div>
-          <div class="project-item">
-            <a href="https://meli.sh"><h3>meli.sh</h3></a>
-            <p class="project-note">this website! my personal portfolio with real-time visitor tracking and comments. built using node.js and pure html.</p>
-          </div>
-          <div class="project-item">
-            <h3>lime</h3>
-            <p class="project-note">upcoming startup with lieh-- helping starter and other band/artists have a chance at becoming famous. built with typescript, tailwind, and django backend (python).</p>
-          </div>
-        </div>
-      </div>
 
-      <div class="textcomp">
-        <div class="sizecomp">
-          <div class="textcompgen">
-            <h1>Essays</h1>
-            <div>
-              <a href="./posts/post1.html"><h3>How I made my app builder!</h3></a>
-              <a href="./posts/post2.html"><h3>Hacktoberfest with beqa!</h3></a>
-            </div>
-          </div>
-          <div class="textcompgen">
-            <h1>Random</h1>
-            <div>
-              <a href="./random/random1.html"><h3>Within every lie there is truth</h3></a>
-              <a href="./random/random2.html"><h3>Say something...</h3></a>
-            </div>
-          </div>
-          <div class="textcompgen">
-            <h1>Poems</h1>
-            <div>
-              <a href="poems/poem1.html"><h3>SF wanderer</h3></a>
-              <a href="poems/poem2.html"><h3>With every puff</h3></a>
+          <div class="right-section">
+            <div class="textcomp">
+              <div class="sizecomp">
+                <div class="textcompgen">
+                  <h1>Essays</h1>
+                  <div>
+                    <a href="./posts/post1.html"><h3>How I made my app builder!</h3></a>
+                    <a href="./posts/post2.html"><h3>Hacktoberfest with beqa!</h3></a>
+                    <a href="./posts/post3.html"><h3>How I transcribed my grandmother's book using AI</h3></a>
+                  </div>
+                </div>
+                <div class="textcompgen">
+                  <h1>Random</h1>
+                  <div>
+                    <a href="./random/random1.html"><h3>Within every lie there is truth</h3></a>
+                    <a href="./random/random2.html"><h3>Say something...</h3></a>
+                  </div>
+                </div>
+                <div class="textcompgen">
+                  <h1>Poems</h1>
+                  <div>
+                    <a href="poems/poem1.html"><h3>SF wanderer</h3></a>
+                    <a href="poems/poem2.html"><h3>With every puff</h3></a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
     </main>
 
     <div class="contact">
@@ -86,6 +96,8 @@
       </div>
       <p class="copyright">Copyright 2025 Meli. All rights reserved.</p>
     </div>
-    <script src="script-persistent.js"></script>
+    </div>
+    </main>
+    <script type="module" src="script-persistent.js"></script>
   </body>
 </html>

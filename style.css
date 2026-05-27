@@ -1,20 +1,24 @@
-html,
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
 body {
   overflow-x: hidden;
+  overflow-y: auto;
   max-width: 100%;
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  overscroll-behavior: none;
-}
-
-body {
   display: flex;
   flex-direction: column;
+  background: white;
+  color: #000;
 }
 
 .post-header {
   padding-left: 20px;
+  display: none;
 }
 
 .post-header h2 {
@@ -22,194 +26,442 @@ body {
 }
 
 .intro {
-  display: flex;
-  flex: 1;
-  padding-bottom: 500px;
-  max-height: 500px;
-  max-width: 100%;
-  justify-content: center;
+  min-height: 70vh;
+  display: block;
   font-family: "Times New Roman", Times, serif;
   position: relative;
-  z-index: 1;
+  padding: 60px 60px;
+  background: white;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-top: 20vh;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  border-bottom: none;
 }
 
-.intro h1 {
-  font-size: 250px;
-  position: absolute;
-  transform: translateX(-400px) translateY(-100px);
+.intro.hide {
+  opacity: 0;
+  transform: translateY(-40px);
+  pointer-events: none;
+}
+
+.content-view {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.content-view.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.split-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background: white;
+  padding-top: 10px;
+}
+
+.left-section {
+  flex: 1;
+  border-right: none;
+  background: white;
+}
+
+.right-section {
+  flex: 1;
+  background: white;
 }
 
 .intro h2 {
-  font-size: 70px;
-  max-width: 1000px;
+  font-size: clamp(24px, 4vw, 48px);
+  font-weight: 400;
+  margin: 0;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
   position: absolute;
-  transform: translateX(200px) translateY(20px);
+  top: 100px;
+  left: 60px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.intro h1 {
+  font-size: clamp(120px, 20vw, 320px);
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+  color: #000;
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.shall-we-btn {
+  font-size: clamp(18px, 2vw, 24px);
+  font-family: "Courier New", monospace;
+  color: #000;
+  text-decoration: none;
+  border: 4px solid #000;
+  padding: 16px 40px;
+  display: block;
+  width: fit-content;
+  margin-top: 32px;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.shall-we-btn:hover {
+  background: #000;
+  color: white;
+  text-decoration: none;
 }
 
 .intro p {
-  box-shadow: 0 2px 8px black;
-  border-radius: 20px;
-  background-color: white;
-  padding: 10px 20px;
-  color: rgb(72, 72, 72);
-  font-size: 22px;
-  max-width: 810px;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.6;
+  max-width: 600px;
+  color: #000;
   position: absolute;
-  transform: translateX(290px) translateY(150px);
+  top: 45%;
+  right: 60px;
+  transform: translateY(-50%);
+  font-family: "Courier New", monospace;
+  border: 3px solid #000;
+  padding: 30px;
+  background: white;
 }
 
 .image-index {
-  position: absolute;
-  transform: translateY(-600px);
-  width: 100%;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
+  display: none;
 }
 
 .my-projects {
-  text-align: center;
-  padding: 60px 20px;
-  margin-bottom: 100px;
+  padding: 0;
+  background: white;
+  position: relative;
+  border-bottom: none;
 }
 
 .my-projects h1 {
-  font-size: 60px;
-  margin-bottom: 40px;
+  font-size: clamp(48px, 8vw, 90px);
+  margin: 0;
+  padding: 60px 60px 40px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  border-bottom: none;
 }
 
 .project-list {
-  display: flex;
-  justify-content: center;
-  gap: 100px;
-  flex-wrap: wrap;
+  display: block;
+  max-width: 100%;
 }
 
 .project-item {
-  text-align: center;
+  margin: 0;
+  padding: 40px 60px;
+  transition: all 0.2s ease;
+  position: relative;
+  border-bottom: none;
+  background: white;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.project-item:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.project-item:hover {
+  background: #000;
+  color: white;
+}
+
+.project-item:hover h3,
+.project-item:hover .project-note {
+  color: white;
 }
 
 .project-item h3 {
-  font-size: 28px;
-  margin-bottom: 10px;
+  font-size: clamp(28px, 4vw, 48px);
+  margin: 0;
+  padding: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
+  width: 35%;
+  flex-shrink: 0;
+  word-wrap: break-word;
+  line-height: 1.1;
+}
+
+.project-item a {
+  color: #000;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+.project-item:hover a {
+  color: white;
 }
 
 .project-note {
-  color: #888;
-  font-size: 16px;
-  margin: 5px 0;
-  font-style: italic;
-  max-width: 300px;
+  color: #000;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  max-width: none;
+  font-family: "Courier New", monospace;
+  transition: color 0.2s ease;
+  font-weight: 400;
+  width: 65%;
 }
 
 a {
-  color: rgb(100, 100, 100);
+  color: #000;
   text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .textcomp {
   width: 100%;
-  text-align: center;
+  padding: 0;
+  background: white;
+  border-bottom: none;
 }
 
 .sizecomp {
   display: flex;
-  justify-content: center;
-  gap: 250px;
+  flex-direction: row;
+  gap: 0;
+  max-width: 100%;
+  min-height: 600px;
+}
+
+.textcompgen {
+  text-align: left;
+  padding: 60px 40px;
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 1;
+}
+
+.textcompgen:last-child {
+  border-right: none;
+}
+
+.textcompgen:nth-child(2) {
+  margin-left: 0;
+  background: white;
+  color: #000;
+}
+
+.textcompgen:nth-child(2) h1,
+.textcompgen:nth-child(2) a {
+  color: #000;
+}
+
+.textcompgen:nth-child(3) {
+  margin-left: 0;
 }
 
 .sizecomp h1 {
-  font-size: 50px;
+  font-size: clamp(36px, 4vw, 48px);
+  font-family: "Times New Roman", Times, serif;
+  margin: 0 0 0 0;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.textcompgen > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.sizecomp h3 {
+  font-family: "Courier New", monospace;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  border-bottom: none;
+}
+
+.textcompgen:nth-child(2) h3 {
+  border-bottom: none;
+}
+
+.sizecomp a {
+  color: #000;
+  display: block;
+  text-decoration: none;
+  border: none;
+  padding: 8px 0;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.sizecomp a:hover {
+  background: transparent;
+  color: #000;
+  border-bottom: 2px solid #000;
+}
+
+.sizecomp a:hover h3 {
+  padding-left: 0;
+  background: transparent;
+  color: #000;
 }
 
 .post-div {
   display: flex;
   justify-content: center;
+  padding-top: 80px;
 }
 
 .post-main {
   width: 60%;
-  font-size: 130%;
+  font-size: 18px;
 }
 
-.post-main p {
-  color: rgb(75, 75, 75);
+.post-main h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
 .post-main h6 {
-  color: gray;
+  font-family: "Courier New", monospace;
+  color: #666;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
 }
 
-.post-main {
-  font-family: "Times New Roman", Times, serif;
-  word-spacing: 0.1em;
+.post-main p {
+  color: #000;
+  font-family: "Courier New", monospace;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .post-main a {
-  font-weight: 600;
+  color: #000;
+  text-decoration: underline;
+  font-weight: 400;
+}
+
+.post-main a:hover {
+  background: #000;
+  color: white;
 }
 
 .main-index {
   flex: 1;
-  padding-bottom: 300px;
+  padding-bottom: 0;
 }
 
 .contact {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  padding: 60px 20px 40px;
+  padding: 80px 60px 60px;
   width: 100%;
-  margin-top: auto;
-  background-color: white;
-  box-shadow: 0px 0px 8px black;
-  min-height: 250px;
+  background-color: #000;
+  color: white;
+  border-top: 6px solid #000;
 }
 
 .contact h3 {
-  font-size: 32px;
+  font-size: clamp(32px, 6vw, 72px);
+  font-family: "Times New Roman", Times, serif;
+  margin: 0 0 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.contact p {
+  font-family: "Courier New", monospace;
+  color: #fff;
+  margin: 0 0 40px;
+  font-size: 16px;
+  max-width: 600px;
+  line-height: 1.5;
 }
 
 .links {
   display: flex;
-  gap: 24px;
+  gap: 0;
+  flex-wrap: wrap;
   z-index: 1;
+  width: 100%;
+  margin-bottom: 40px;
 }
 
 .links a {
-  font-size: 24px;
+  font-size: 16px;
+  background-color: transparent;
+  color: white;
+  padding: 20px 30px;
+  border: 3px solid white;
+  transition: all 0.2s ease;
+  font-family: "Courier New", monospace;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-right: -3px;
+  margin-bottom: -3px;
+}
+
+.links a:hover {
   background-color: white;
-  box-shadow: 0 1px 4px black;
-  padding: 8px 16px;
-  border-radius: 10px;
+  color: #000;
+  text-decoration: none;
+  transform: none;
+  z-index: 10;
 }
 
 .copyright {
-  margin-top: 30px;
+  margin-top: 0;
   color: #666;
   font-size: 14px;
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
 }
 
 #img-for-contact {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 150%;
-  object-fit: cover;
-  object-position: bottom;
-  z-index: 0;
-  opacity: 0.8;
+  display: none;
 }
 
 .contact h3,
@@ -220,267 +472,321 @@ a:hover {
 }
 
 
-@media (max-width: 480px) {
-  /* Prevent horizontal scrolling */
-  html,
-  body {
-    overflow-x: hidden;
-    max-width: 100%;
+@media (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
   }
 
-  * {
-    max-width: 100vw;
+  .left-section {
+    border-right: none;
+    border-bottom: none;
   }
 
-  .intro h1 {
-    font-size: 80px;
-    transform: translateX(-100px) translateY(100px);
-    position: absolute;
-    text-align: center;
+  .intro {
+    min-height: 80vh;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
   }
 
   .intro h2 {
-    font-size: 35px;
-    transform: translateX(0px) translateY(100px);
-    position: absolute;
-    text-align: center;
-    margin-top: 20px;
+    order: 1;
+    padding-bottom: 4px;
+  }
+
+  .intro h1 {
+    order: 2;
+    margin-bottom: 24px;
   }
 
   .intro p {
-    font-size: 14px;
-    transform: translateX(100px) translateY(150px);
-    position: absolute;
-    margin: 20px 10px;
-    max-width: 180px;
+    order: 3;
+    padding-top: 0;
   }
 
-  .image-index {
-    transform: translateY(-600px) translateX(0);
-    position: absolute;
-    width: 200%;
-    height: 1500px;
-    object-fit: cover;
+  .my-projects {
+    padding: 0;
   }
 
+  .my-projects h1 {
+    font-size: clamp(36px, 10vw, 60px);
+    padding: 40px 24px 24px;
+  }
 
-  /* Text sections */
+  .project-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 32px 24px;
+  }
+
+  .project-item a {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .project-item h3 {
+    min-width: auto;
+  }
+
+  .project-note {
+    padding: 0;
+  }
+
+  .textcomp {
+    padding: 0;
+  }
+
   .sizecomp {
     flex-direction: column;
-    gap: 30px;
-    padding: 20px;
+    min-height: auto;
   }
 
-  .sizecomp h1 {
-    font-size: 60px;
+  .textcompgen {
+    padding: 40px 24px;
+    border-right: none;
+    border-bottom: none;
   }
 
-  .sizecomp h3 {
-    font-size: 25px;
+  .textcompgen:last-child {
+    border-bottom: none;
   }
 
-  /* Contact section */
+  .textcompgen:nth-child(2),
+  .textcompgen:nth-child(3) {
+    margin-left: 0;
+  }
 
-  .contact h3 {
-    padding-right: 40px;
-    font-size: 24px;
+  .contact {
+    padding: 60px 24px 40px;
   }
 
   .links {
-    padding-right: 70px;
-    flex-direction: column;
-    gap: 12px;
     width: 100%;
-    max-width: 300px;
   }
 
   .links a {
-    font-size: 18px;
     text-align: center;
-    width: 100%;
+    flex: 1 1 auto;
+    min-width: 100px;
+    font-size: 14px;
+    padding: 16px 20px;
   }
 
+  .intro p {
+    position: static;
+    transform: none;
+    margin-top: 24px;
+    padding: 20px;
+  }
 
-  /* Post/Blog page styles */
-  .post-div {
-    padding: 10px;
+  .intro h2 {
+    position: static;
+    margin-bottom: 16px;
   }
 
   .post-main {
-    width: 95%;
-    padding: 0 30px;
-  }
-
-  .post-main h1 {
-    font-size: 60px;
-    line-height: 1.3;
-    margin-bottom: 15px;
-  }
-
-  .post-main h6 {
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-
-  .post-main p {
-    font-size: 20px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
-
-  .post-main img {
-    width: 300px !important;
-    height: auto;
-    margin: 20px 0;
-  }
-
-  .post-main div {
-    padding: 10px;
-    margin: 15px 0;
-  }
-
-  .post-main a {
-    word-break: break-word;
+    width: 90%;
+    padding: 0 20px;
   }
 
   .reader-thing {
-    font-size: 18px !important;
-    transform: translate(-230px, 210px);
+    font-size: 12px;
+    padding: 6px 12px;
+    top: 12px;
+    right: 12px;
   }
+
+  .home-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+    top: 12px;
+    right: auto;
+    left: 12px;
+  }
+
+  .textcompgen {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
 }
 
 .reader-thing {
-  position: absolute;
-  font-size: 25px;
-  font-weight: bold;
-  right: 50px;
-  top: 25px;
+  position: fixed;
+  font-size: 16px;
+  font-weight: 400;
+  right: 24px;
+  top: 24px;
   font-family: "Times New Roman", Times, serif;
-  color: #666;
-  opacity: 90%;
+  color: #000;
+  background: transparent;
+  padding: 0;
+  border: none;
+  z-index: 100;
+  text-transform: uppercase;
+}
+
+.home-btn {
+  position: fixed;
+  font-size: 16px;
+  font-weight: 400;
+  right: 170px;
+  top: 24px;
+  font-family: "Times New Roman", Times, serif;
+  color: #000;
+  background: transparent;
+  padding: 0;
+  border: none;
+  z-index: 100;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.home-btn.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.home-btn:hover {
+  background: transparent;
+  color: #000;
+  text-decoration: underline;
 }
 
 .for-reader {
-  position: absolute;
-  right: 0;
-  z-index: -1;
+  display: none;
 }
 
 .comment-section {
   display: flex;
   justify-content: center;
-  padding: 60px 20px;
-  margin-top: 50px;
+  padding: 80px 20px 40px;
+  margin-top: 80px;
   background: white;
+  border-top: 3px solid #000;
 }
 
 .in-comment {
-  max-width: 600px;
+  max-width: 800px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .in-comment text {
   font-size: 24px;
-  font-weight: 600;
-  color: #333;
+  font-weight: 400;
+  color: #000;
   font-family: "Times New Roman", Times, serif;
+  text-transform: uppercase;
 }
 
 .in-comment input {
   width: 100%;
-  max-width: 500px;
-  padding: 15px 20px;
-  border-radius: 15px;
-  border: 2px solid #e0e0e0;
-  background-color: white;
+  padding: 12px 0;
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid #000;
+  background-color: transparent;
   font-size: 16px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Courier New", monospace;
   outline: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  box-shadow: none;
 }
 
 .in-comment input::placeholder {
-  color: #999;
-  font-style: italic;
+  color: #666;
+  font-style: normal;
 }
 
 .in-comment input:focus {
-  border-color: #5caa5e;
-  box-shadow: 0 4px 12px rgba(92, 170, 94, 0.2);
-  transform: translateY(-2px);
+  border-bottom: 3px solid #000;
+  box-shadow: none;
+  transform: none;
 }
 
 .in-comment input:hover {
-  border-color: #8eda90;
+  border-bottom: 3px solid #000;
 }
 
 /* Comments Display Styles */
 .comments-display {
   width: 100%;
-  padding: 0 40px;
-  margin: 60px 0;
+  padding: 40px 40px 80px;
+  margin: 0;
 }
 
 .comments-display h3 {
-  font-size: 28px;
-  font-weight: 600;
-  color: #333;
+  font-size: 24px;
+  font-weight: 400;
+  color: #000;
   font-family: "Times New Roman", Times, serif;
   margin-bottom: 30px;
-  text-align: center;
+  text-align: left;
+  text-transform: uppercase;
 }
 
 #comments-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  gap: 0;
   width: 100%;
   align-items: flex-start;
 }
 
 .comment-item {
   background: white;
-  border-radius: 15px;
-  padding: 15px 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e8e8e8;
-  transition: all 0.3s ease;
+  border-radius: 0;
+  padding: 20px 0;
+  box-shadow: none;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  transition: all 0.2s ease;
   position: relative;
-  flex: 0 0 auto;
+  width: 100%;
 }
 
 .comment-item:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-  transform: translateY(-2px);
+  box-shadow: none;
+  transform: none;
+  background: #f5f5f5;
 }
 
 .comment-name {
-  font-size: 13px;
+  font-size: 12px;
   color: #666;
-  font-weight: 600;
-  margin-bottom: 4px;
-  font-family: monospace;
+  font-weight: 400;
+  margin-bottom: 8px;
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
 }
 
 .comment-text {
-  font-size: 15px;
-  color: #444;
-  line-height: 1.4;
-  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  color: #000;
+  line-height: 1.5;
+  font-family: "Courier New", monospace;
 }
 
 .no-comments {
-  text-align: center;
-  color: #999;
-  font-style: italic;
-  padding: 40px;
-  background: white;
-  border: 1px solid #e8e8e8;
-  border-radius: 15px;
+  text-align: left;
+  color: #666;
+  font-style: normal;
+  padding: 20px 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   font-size: 16px;
+  font-family: "Courier New", monospace;
 }

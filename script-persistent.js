@@ -1,5 +1,90 @@
-// Comments with localStorage persistence and server sync
+// Import InstantDB
+import { init, tx, id } from "https://cdn.jsdelivr.net/npm/@instantdb/core/+esm";
+
+// Initialize InstantDB
+const db = init({
+  appId: "161bcddc-4f2f-4922-bba7-4b89ccd1f253",
+});
+
+// Comments with InstantDB
 document.addEventListener("DOMContentLoaded", () => {
+
+  // View State Management
+  const shallWeBtn = document.querySelector(".shall-we-btn");
+  const introSection = document.querySelector(".intro");
+  const contentSections = document.querySelector(".content-view");
+
+  // Check if we should show projects section on load
+  if (window.location.hash === "#projects") {
+    const homeBtn = document.querySelector(".home-btn");
+    if (homeBtn) {
+      homeBtn.classList.add("show");
+    }
+    if (introSection) {
+      introSection.style.display = "none";
+    }
+    if (contentSections) {
+      contentSections.style.display = "block";
+      contentSections.classList.add("show");
+    }
+  }
+
+  if (shallWeBtn) {
+    shallWeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Show home button
+      const homeBtn = document.querySelector(".home-btn");
+      if (homeBtn) {
+        homeBtn.classList.add("show");
+      }
+
+      // Fade out intro
+      if (introSection) {
+        introSection.classList.add("hide");
+      }
+
+      // Wait for fade out, then show content
+      setTimeout(() => {
+        if (introSection) {
+          introSection.style.display = "none";
+        }
+        if (contentSections) {
+          contentSections.style.display = "block";
+          // Trigger reflow
+          contentSections.offsetHeight;
+          contentSections.classList.add("show");
+        }
+      }, 600);
+    });
+  }
+
+  // Handle home button click - only for index.html
+  const homeBtn = document.querySelector(".home-btn");
+  if (homeBtn && window.location.pathname.includes("index.html")) {
+    homeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Hide home button
+      homeBtn.classList.remove("show");
+
+      // Hide content view
+      if (contentSections) {
+        contentSections.classList.remove("show");
+      }
+
+      // Show intro
+      setTimeout(() => {
+        if (contentSections) {
+          contentSections.style.display = "none";
+        }
+        if (introSection) {
+          introSection.style.display = "block";
+          introSection.classList.remove("hide");
+        }
+      }, 600);
+    });
+  }
 
   // WebSocket for reader count
   const readerElement = document.getElementById("reader-count");
@@ -53,10 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
     connectWebSocket();
   }
 
-  // Comments System with localStorage and server persistence
-  let commentsData = {};
-  const STORAGE_KEY = "meli_comments";
-
+  // Comments System with InstantDB
   // Helper function to escape HTML
   function escapeHtml(text) {
     const map = {
@@ -69,41 +151,21 @@ document.addEventListener("DOMContentLoaded", () => {
     return text.replace(/[&<>"']/g, (m) => map[m]);
   }
 
-  // Load comments from localStorage first
-  function loadLocalComments() {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        commentsData = JSON.parse(stored);
-      }
-    } catch (e) {
-      console.log("Could not load local comments");
-    }
-  }
-
-  // Save comments to localStorage
-  function saveLocalComments() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(commentsData));
-    } catch (e) {
-      console.log("Could not save to localStorage");
-    }
+  // Get current page name
+  function getPageName() {
+    const pathname = window.location.pathname;
+    return pathname.split("/").pop().replace(".html", "") || "index";
   }
 
   // Function to display comments
-  function displayComments() {
+  function displayComments(comments) {
     const container = document.getElementById("comments-container");
     if (!container) return;
 
-    const pathname = window.location.pathname;
-    const pageName = pathname.split("/").pop().replace(".html", "") || "index";
-
-    const pageComments = commentsData[pageName] || [];
-
-    if (pageComments.length === 0) {
+    if (comments.length === 0) {
       container.innerHTML = '<div class="no-comments">No thoughts shared yet. Be the first!</div>';
     } else {
-      container.innerHTML = pageComments
+      container.innerHTML = comments
         .map((comment) => {
           // Random anonymous name for each comment
           const names = ["??inaccuracy", "??error", "??failed"];
@@ -121,97 +183,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Load comments from server
-  function loadServerComments() {
-    const serverUrl =
-      window.location.hostname === "localhost"
-        ? "http://localhost:3001/comments.json"
-        : "https://meli-sh.onrender.com/comments.json";
-
-    fetch(serverUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        // Merge server data with local data
-        Object.keys(data).forEach((page) => {
-          if (!commentsData[page]) {
-            commentsData[page] = [];
-          }
-          // Add server comments that aren't already in local
-          data[page].forEach((serverComment) => {
-            const exists = commentsData[page].some((localComment) => localComment.text === serverComment.text);
-            if (!exists) {
-              commentsData[page].push(serverComment);
-            }
-          });
-        });
-        saveLocalComments();
-        displayComments();
-      })
-      .catch((error) => {
-        console.log("Could not load server comments:", error);
-        // Still display local comments even if server fails
-        displayComments();
-      });
-  }
-
-  // Initialize comments
-  loadLocalComments();
-  loadServerComments();
+  // Subscribe to comments for current page
+  const pageName = getPageName();
+  db.subscribeQuery(
+    {
+      comments: {
+        $: {
+          where: {
+            page: pageName,
+          },
+        },
+      },
+    },
+    (resp) => {
+      if (resp.data && resp.data.comments) {
+        displayComments(resp.data.comments);
+      }
+    }
+  );
 
   // Handle comment input
   const commentInput = document.getElementById("comment-input");
   if (commentInput) {
     commentInput.addEventListener("change", function () {
       if (commentInput.value.trim()) {
-        const pathname = window.location.pathname;
-        const pageName = pathname.split("/").pop().replace(".html", "") || "index";
-
-        // Initialize page array if doesn't exist
-        if (!commentsData[pageName]) {
-          commentsData[pageName] = [];
-        }
-
-        // Add new comment
-        const newComment = {
-          text: commentInput.value.trim(),
-        };
-
-        commentsData[pageName].push(newComment);
-
-        // Save locally immediately
-        saveLocalComments();
-        displayComments();
-
-        // Try to save to server (but don't wait)
-        const serverUrl =
-          window.location.hostname === "localhost"
-            ? "http://localhost:3001/save-comment"
-            : "https://meli-sh.onrender.com/save-comment";
-
-        fetch(serverUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
+        // Add new comment to InstantDB
+        db.transact([
+          tx.comments[id()].update({
             page: pageName,
-            comment: newComment.text,
+            text: commentInput.value.trim(),
+            createdAt: Date.now(),
           }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Comment saved to server:", data);
-          })
-          .catch((error) => {
-            console.log("Server save failed, but comment saved locally:", error);
-          });
+        ]);
 
         // Clear input
         commentInput.value = "";
       }
     });
   }
-
-  // Periodically sync with server
-  setInterval(() => {
-    loadServerComments();
-  }, 30000); // Every 30 seconds
 });
