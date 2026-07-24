@@ -375,6 +375,14 @@ a:hover {
   margin-bottom: 20px;
 }
 
+.post-img {
+  display: block;
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  margin: 20px auto;
+}
+
 .post-main a {
   color: #000;
   font-family: "Courier New", monospace;
