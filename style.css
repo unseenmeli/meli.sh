@@ -377,8 +377,17 @@ a:hover {
 
 .post-main a {
   color: #000;
-  text-decoration: underline;
+  font-family: "Courier New", monospace;
+  line-height: 1.6;
   font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.post-main a:hover {
+  text-decoration: underline;
+  opacity: 0.7;
 }
 
 .post-main a:hover {
