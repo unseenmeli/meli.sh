@@ -807,3 +807,64 @@ a:hover {
   font-size: 16px;
   font-family: "Courier New", monospace;
 }
+
+.post-main .verse {
+  color: #000;
+  font-family: "Courier New", monospace;
+  line-height: 1.8;
+  white-space: pre-line;
+  margin-bottom: 40px;
+}
+
+.post-main .scene-mark {
+  color: #666;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 50px 0 30px;
+}
+
+.post-main .line {
+  margin-bottom: 20px;
+}
+
+.post-main .line .who {
+  font-weight: 700;
+}
+
+.post-main .pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid #000;
+  margin-top: 60px;
+  padding: 20px 0 50px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.post-main .pager .page-count {
+  color: #666;
+}
+
+.post-main .pager a {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.post-main .pager .disabled {
+  color: #bbb;
+}
+
+@media (max-width: 768px) {
+  .post-main .pager {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
