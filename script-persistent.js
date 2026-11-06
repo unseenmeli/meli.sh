@@ -9,80 +9,33 @@ const db = init({
 // Comments with InstantDB
 document.addEventListener("DOMContentLoaded", () => {
 
-  // View State Management
-  const shallWeBtn = document.querySelector(".shall-we-btn");
-  const introSection = document.querySelector(".intro");
-  const contentSections = document.querySelector(".content-view");
-
-  // Check if we should show projects section on load
-  if (window.location.hash === "#projects") {
-    const homeBtn = document.querySelector(".home-btn");
-    if (homeBtn) {
-      homeBtn.classList.add("show");
-    }
-    if (introSection) {
-      introSection.style.display = "none";
-    }
-    if (contentSections) {
-      contentSections.style.display = "block";
-      contentSections.classList.add("show");
-    }
-  }
-
-  if (shallWeBtn) {
-    shallWeBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      // Show home button
-      const homeBtn = document.querySelector(".home-btn");
-      if (homeBtn) {
-        homeBtn.classList.add("show");
-      }
-
-      // Fade out intro
-      if (introSection) {
-        introSection.classList.add("hide");
-      }
-
-      // Wait for fade out, then show content
-      setTimeout(() => {
-        if (introSection) {
-          introSection.style.display = "none";
-        }
-        if (contentSections) {
-          contentSections.style.display = "block";
-          // Trigger reflow
-          contentSections.offsetHeight;
-          contentSections.classList.add("show");
-        }
-      }, 600);
+  // Hero sigil: a soft light follows the pointer across the gold
+  const sigil = document.querySelector(".sigil-hero");
+  const hero = document.querySelector(".hero");
+  if (sigil && hero && matchMedia("(hover: hover)").matches) {
+    let raf = 0;
+    hero.addEventListener("pointermove", (e) => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const r = sigil.getBoundingClientRect();
+        sigil.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        sigil.style.setProperty("--my", `${e.clientY - r.top}px`);
+      });
+    });
+    hero.addEventListener("pointerleave", () => {
+      sigil.style.removeProperty("--mx");
+      sigil.style.removeProperty("--my");
     });
   }
 
-  // Handle home button click - only for index.html
-  const homeBtn = document.querySelector(".home-btn");
-  if (homeBtn && window.location.pathname.includes("index.html")) {
-    homeBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      // Hide home button
-      homeBtn.classList.remove("show");
-
-      // Hide content view
-      if (contentSections) {
-        contentSections.classList.remove("show");
-      }
-
-      // Show intro
-      setTimeout(() => {
-        if (contentSections) {
-          contentSections.style.display = "none";
-        }
-        if (introSection) {
-          introSection.style.display = "block";
-          introSection.classList.remove("hide");
-        }
-      }, 600);
+  // Project cards: a gold light follows the pointer
+  if (matchMedia("(hover: hover)").matches) {
+    document.querySelectorAll("[data-glow]").forEach((card) => {
+      card.addEventListener("pointermove", (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty("--gx", `${e.clientX - r.left}px`);
+        card.style.setProperty("--gy", `${e.clientY - r.top}px`);
+      });
     });
   }
 

@@ -1,104 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Meli's Website</title>
+    <meta charset="utf-8" />
+    <title>Meli</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Meli (David Asanidze): projects, essays, random thoughts and poems." />
+    <meta name="theme-color" content="#0b0a08" />
+    <link rel="icon" href="./media/index/sigil.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <body>
-    <img class="for-reader" src="./media/index/—Pngtree—color design vector wavy lines_20819.png" />
-    <main class="main-index">
-      <div class="reader-thing"><text id="reader-count"></text><text> readers</text></div>
-      <a href="/" class="home-btn">← HOME</a>
-      <img class="image-index" src="./media/index/trying.png" />
-      <div class="intro">
-        <h2>Welcome to my website</h2>
-        <h1>Meli</h1>
-        <a href="#projects" class="shall-we-btn">Shall we?</a>
-        <p>
-          There's not much I could say in about me, for I believe the truth lays upon discovery of spark in one another
-          (this was an attempt to be philosophical). Well I love music, programing, fashion, romantic movies and a lot
-          more! i feel like once you read all my posts you will get a general idea about me. As for now I am David
-          Asanidze a 19 year old who loves to love if that makes sense :D.
-        </p>
-      </div>
+  <body class="home">
+    <header class="topbar">
+      <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span>meli.sh</a>
+      <nav class="topnav" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#writing">Writing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="reader-thing"><span class="pulse" aria-hidden="true"></span><text id="reader-count">1</text><text> reading</text></div>
+    </header>
 
-      <div class="content-view" style="display: none;">
-        <div class="split-container">
-          <div class="left-section">
-            <div class="my-projects" id="projects">
-              <h1>My projects</h1>
-              <div class="project-list">
-                <div class="project-item">
-                  <a href="https://geoarsh.fly.dev/"><h3>geo arsh</h3>
-                  <p class="project-note">my first ever project, built for an association to help them manage their community and events. started with pure html and css, then integrated django framework for the backend functionality. used python for server-side logic and javascript for interactive features on the frontend.</p></a>
-                </div>
-                <div class="project-item">
-                  <a href="https://phsycologos.vercel.app"><h3>phsycologos</h3>
-                  <p class="project-note">created for the psychology association to showcase their work and connect with students. built with next.js for fast page loads and better seo, typescript for cleaner code, and tailwind for styling. deployed on vercel for seamless updates.</p></a>
-                </div>
-                <div class="project-item">
-                  <a href="https://meli.sh"><h3>meli.sh</h3>
-                  <p class="project-note">this website! my personal portfolio where i share my projects, essays, and thoughts. features real-time visitor tracking so you can see how many people are browsing, and a comment system where visitors can leave their thoughts. built using node.js for the websocket backend and pure html/css for full control over the design.</p></a>
-                </div>
-                <div class="project-item">
-                  <h3>lime</h3>
-                  <p class="project-note">upcoming startup with lieh, focused on helping starter bands and independent artists get discovered and build their audience. the platform will connect musicians with listeners who actually care about finding new music. built with typescript and tailwind for the frontend experience, and django backend with python for handling user data and music recommendations.</p>
-                </div>
-              </div>
-            </div>
+    <main class="main-index" id="top">
+      <section class="hero" aria-label="Meli">
+        <div class="sigil sigil-hero" role="img" aria-label="Meli's back tattoo, redrawn in gold"></div>
+        <h1 class="wordmark">Meli</h1>
+        <div class="hero-foot">
+          <p class="eyebrow">Welcome to my website</p>
+          <a href="#about" class="shall-we-btn">Shall we? <span aria-hidden="true">↓</span></a>
+          <p class="eyebrow eyebrow-right">David Asanidze · 19</p>
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="about-grid">
+          <figure class="about-photo">
+            <img src="./media/index/back.jpg" width="768" height="960" alt="Meli from behind on a balcony at night, the thorned back tattoo spreading across both shoulders" loading="lazy" />
+          </figure>
+          <div class="about-text">
+            <p class="label"><span>I</span>About me</p>
+            <h2>The truth lays upon discovery</h2>
+            <p class="bio">
+              There's not much I could say in about me, for I believe the truth lays upon discovery of spark in one another
+              (this was an attempt to be philosophical). Well I love music, programing, fashion, romantic movies and a lot
+              more! i feel like once you read all my posts you will get a general idea about me. As for now I am David
+              Asanidze a 19 year old who loves to love if that makes sense :D.
+            </p>
+            <a href="#writing" class="text-link">Read my posts <span aria-hidden="true">→</span></a>
           </div>
+        </div>
+      </section>
 
-          <div class="right-section">
-            <div class="textcomp">
-              <div class="sizecomp">
-                <div class="textcompgen">
-                  <h1>Essays</h1>
-                  <div>
-                    <a href="./posts/post1.html"><h3>How I made my app builder!</h3></a>
-                    <a href="./posts/post2.html"><h3>Hacktoberfest with beqa!</h3></a>
-                    <a href="./posts/post3.html"><h3>How I transcribed my grandmother's book using AI</h3></a>
+      <section class="projects" id="projects">
+        <div class="wrap">
+          <p class="label"><span>II</span>Work</p>
+          <div class="projects-head">
+            <h2>My projects</h2>
+            <p class="projects-count"><span>06</span> things i've built</p>
+          </div>
+          <div class="pgrid">
+            <article class="pcard pcard--wide" data-glow>
+              <div class="pcard-cover"><img src="./media/projects/geoarsh.jpg" width="960" height="600" alt="The geo arsh website: a congress banner over a photo of old Tbilisi" loading="lazy" /></div>
+              <div class="pcard-body">
+                <div class="pcard-head">
+                  <img class="pfp" src="./media/projects/pfp-geoarsh.jpg" width="48" height="48" alt="" loading="lazy" />
+                  <div class="pcard-title">
+                    <h3><a class="pcard-link" href="https://geoarsh.fly.dev/">geo arsh</a></h3>
+                    <p class="pcard-meta">01 · my first project</p>
                   </div>
+                  <span class="pcard-arrow" aria-hidden="true">↗</span>
                 </div>
-                <div class="textcompgen">
-                  <h1>Random</h1>
-                  <div>
-                    <a href="./random/random1.html"><h3>Within every lie there is truth</h3></a>
-                    <a href="./random/random2.html"><h3>Say something...</h3></a>
-                    <a href="./random/random3.html"><h3>Font of the mirror</h3></a>
-                  </div>
-                </div>
-                <div class="textcompgen">
-                  <h1>Poems</h1>
-                  <div>
-                    <a href="poems/poem1.html"><h3>SF wanderer</h3></a>
-                    <a href="poems/poem2.html"><h3>With every puff</h3></a>
-                  </div>
+                <p class="pcard-note">built for an association to help them manage their community and events. started with pure html and css, then integrated django for the backend, python for server-side logic and javascript for the interactive bits.</p>
+                <div class="pcard-foot">
+                  <ul class="chips"><li>django</li><li>python</li><li>html/css</li><li>javascript</li></ul>
+                  
                 </div>
               </div>
+            </article>
+            <article class="pcard " data-glow>
+              <div class="pcard-cover"><img src="./media/projects/echo.jpg" width="960" height="600" alt="A manga panel from Echo's demo: the Echo character says I'll help you either way" loading="lazy" /></div>
+              <div class="pcard-body">
+                <div class="pcard-head">
+                  <img class="pfp" src="./media/projects/pfp-echo.jpg" width="48" height="48" alt="" loading="lazy" />
+                  <div class="pcard-title">
+                    <h3><a class="pcard-link" href="https://github.com/unseenmeli/ECHO">echo</a></h3>
+                    <p class="pcard-meta">02 · hacktoberfest georgia 2026</p>
+                  </div>
+                  <span class="pcard-arrow" aria-hidden="true">↗</span>
+                </div>
+                <p class="pcard-note">a little companion for your biggest questions. a desktop app that sees your screen, listens, talks back, and draws the explanation on a shared whiteboard while it speaks. built with lime.</p>
+                <div class="pcard-foot">
+                  <ul class="chips"><li>electron</li><li>react</li><li>typescript</li><li>claude</li><li>deepgram</li></ul>
+                  
+                </div>
+              </div>
+            </article>
+            <article class="pcard " data-glow>
+              <div class="pcard-cover"><img src="./media/projects/swipe.jpg" width="960" height="600" alt="The SWIPE app showing an event card next to a streak of light" loading="lazy" /></div>
+              <div class="pcard-body">
+                <div class="pcard-head">
+                  <img class="pfp" src="./media/projects/pfp-swipe.jpg" width="48" height="48" alt="" loading="lazy" />
+                  <div class="pcard-title">
+                    <h3><a class="pcard-link" href="./posts/post2.html">swipe</a></h3>
+                    <p class="pcard-meta">03 · hacktoberfest-lime1 · top 20</p>
+                  </div>
+                  <span class="pcard-arrow" aria-hidden="true">→</span>
+                </div>
+                <p class="pcard-note">tinder, but for clubs, bars and gigs. lime ai tells you the vibe, the closest station and what to wear before you even get there. built with beqa on 10 red bulls and zero sleep.</p>
+                <div class="pcard-foot">
+                  <ul class="chips"><li>react native</li><li>expo</li><li>instantdb</li><li>ai</li></ul>
+                  <a class="pcard-alt" href="https://github.com/unseenmeli/Hacktoberfest-lime1">github <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </article>
+            <article class="pcard pcard--wide" data-glow>
+              <div class="pcard-cover llm-vis" aria-hidden="true">
+                <div class="llm-toks"><span class="tok" style="--i:0"><b>i</b><i>7</i></span><span class="tok" style="--i:1"><b>t</b><i>13</i></span><span class="tok" style="--i:2"><b>␣</b><i>0</i></span><span class="tok" style="--i:3"><b>w</b><i>15</i></span><span class="tok" style="--i:4"><b>a</b><i>1</i></span><span class="tok" style="--i:5"><b>s</b><i>12</i></span><span class="tok" style="--i:6"><b>␣</b><i>0</i></span><span class="tok" style="--i:7"><b>a</b><i>1</i></span><span class="tok" style="--i:8"><b>␣</b><i>0</i></span><span class="tok" style="--i:9"><b>w</b><i>15</i></span><span class="tok" style="--i:10"><b>o</b><i>10</i></span><span class="tok" style="--i:11"><b>n</b><i>9</i></span><span class="tok" style="--i:12"><b>d</b><i>2</i></span><span class="tok" style="--i:13"><b>e</b><i>3</i></span><span class="tok" style="--i:14"><b>r</b><i>11</i></span><span class="tok" style="--i:15"><b>f</b><i>4</i></span><span class="tok" style="--i:16"><b>u</b><i>14</i></span><span class="tok" style="--i:17"><b>l</b><i>8</i></span><span class="tok" style="--i:18"><b>␣</b><i>0</i></span><span class="tok" style="--i:19"><b>n</b><i>9</i></span><span class="tok" style="--i:20"><b>i</b><i>7</i></span><span class="tok" style="--i:21"><b>g</b><i>5</i></span><span class="tok" style="--i:22"><b>h</b><i>6</i></span><span class="tok" style="--i:23"><b>t</b><i>13</i></span></div>
+                <div class="llm-attn"><div class="attn-grid"><span style="--a:1.00"></span><span class="m"></span><span class="m"></span><span class="m"></span><span class="m"></span><span class="m"></span><span class="m"></span><span class="m"></span><span style="--a:0.73"></span><span style="--a:0.27"></span><span class="m"></span><span class="m"></span><span class="m"></span><span class="m"></span><span class="m"></span><span class="m"></span><span style="--a:0.25"></span><span style="--a:0.48"></span><span style="--a:0.27"></span><span class="m"></span><span class="m"></span><span class="m"></span><span class="m"></span><span class="m"></span><span style="--a:0.74"></span><span style="--a:0.05"></span><span style="--a:0.14"></span><span style="--a:0.06"></span><span class="m"></span><span class="m"></span><span class="m"></span><span class="m"></span><span style="--a:0.07"></span><span style="--a:0.14"></span><span style="--a:0.22"></span><span style="--a:0.27"></span><span style="--a:0.30"></span><span class="m"></span><span class="m"></span><span class="m"></span><span style="--a:0.70"></span><span style="--a:0.15"></span><span style="--a:0.01"></span><span style="--a:0.07"></span><span style="--a:0.03"></span><span style="--a:0.03"></span><span class="m"></span><span class="m"></span><span style="--a:0.53"></span><span style="--a:0.10"></span><span style="--a:0.01"></span><span style="--a:0.18"></span><span style="--a:0.09"></span><span style="--a:0.03"></span><span style="--a:0.05"></span><span class="m"></span><span style="--a:0.04"></span><span style="--a:0.08"></span><span style="--a:0.05"></span><span style="--a:0.09"></span><span style="--a:0.61"></span><span style="--a:0.03"></span><span style="--a:0.03"></span><span style="--a:0.06"></span></div><div class="attn-scan"><span class="scan" style="--r:0"></span><span class="scan" style="--r:1"></span><span class="scan" style="--r:2"></span><span class="scan" style="--r:3"></span><span class="scan" style="--r:4"></span><span class="scan" style="--r:5"></span><span class="scan" style="--r:6"></span><span class="scan" style="--r:7"></span></div></div>
+                <p class="llm-cap">softmax(QKᵀ/√d) · causal mask</p>
+              </div>
+              <div class="pcard-body">
+                <div class="pcard-head">
+                  <span class="pfp pfp-svg" aria-hidden="true"><svg viewBox="0 0 48 48"><g fill="#c6a15b"><rect x="11" y="11" width="5.5" height="5.5" opacity="1"/><rect x="11" y="18" width="5.5" height="5.5" opacity="0.45"/><rect x="18" y="18" width="5.5" height="5.5" opacity="0.9"/><rect x="11" y="25" width="5.5" height="5.5" opacity="0.75"/><rect x="18" y="25" width="5.5" height="5.5" opacity="1"/><rect x="25" y="25" width="5.5" height="5.5" opacity="1"/><rect x="11" y="32" width="5.5" height="5.5" opacity="0.3"/><rect x="18" y="32" width="5.5" height="5.5" opacity="0.8"/><rect x="25" y="32" width="5.5" height="5.5" opacity="0.45"/><rect x="32" y="32" width="5.5" height="5.5" opacity="0.9"/></g></svg></span>
+                  <div class="pcard-title">
+                    <h3><a class="pcard-link" href="https://github.com/unseenmeli/Creating-LLM-from-the-scratch">creating-llm</a></h3>
+                    <p class="pcard-meta">04 · in progress</p>
+                  </div>
+                  <span class="pcard-arrow" aria-hidden="true">↗</span>
+                </div>
+                <p class="pcard-note">building a language model from scratch in plain javascript. tokenizer done, embedding layer done, now halfway through the attention layer, onto softmax.</p>
+                <div class="pcard-foot">
+                  <ul class="chips"><li>javascript</li><li>from scratch</li><li>attention</li></ul>
+                  
+                </div>
+              </div>
+            </article>
+            <article class="pcard pcard--wide" data-glow>
+              <div class="pcard-cover"><img src="./media/projects/transcribing.jpg" width="960" height="600" alt="A handwritten page in Georgian from my grandmother's memoir" loading="lazy" /></div>
+              <div class="pcard-body">
+                <div class="pcard-head">
+                  <span class="pfp pfp-svg" aria-hidden="true"><svg viewBox="0 0 48 48"><g fill="#e9dfcc" opacity=".92"><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(0 24 24)"/><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(30 24 24)"/><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(60 24 24)"/><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(90 24 24)"/><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(120 24 24)"/><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(150 24 24)"/><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(180 24 24)"/><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(210 24 24)"/><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(240 24 24)"/><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(270 24 24)"/><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(300 24 24)"/><ellipse cx="24" cy="13.5" rx="3.6" ry="8" transform="rotate(330 24 24)"/></g><circle cx="24" cy="24" r="5.5" fill="#c6a15b"/></svg></span>
+                  <div class="pcard-title">
+                    <h3><a class="pcard-link" href="./posts/post3.html">transcribing</a></h3>
+                    <p class="pcard-meta">05 · house of daisies</p>
+                  </div>
+                  <span class="pcard-arrow" aria-hidden="true">→</span>
+                </div>
+                <p class="pcard-note">my grandmother wrote a 170-page memoir in georgian by hand. i put claude, chatgpt and gemini against her handwriting, transcribed the book and exported it to latex so the family can hold it.</p>
+                <div class="pcard-foot">
+                  <ul class="chips"><li>next.js</li><li>gemini</li><li>instantdb</li><li>latex</li></ul>
+                  
+                </div>
+              </div>
+            </article>
+            <article class="pcard " data-glow>
+              <div class="pcard-cover"><img src="./media/projects/melish.jpg" width="960" height="600" alt="The meli.sh homepage: the gold tattoo sigil behind the word Meli" loading="lazy" /></div>
+              <div class="pcard-body">
+                <div class="pcard-head">
+                  <span class="pfp pfp-svg" aria-hidden="true"><span class="sigil pfp-sigil"></span></span>
+                  <div class="pcard-title">
+                    <h3><a class="pcard-link" href="#top">meli.sh</a></h3>
+                    <p class="pcard-meta">06 · you are here</p>
+                  </div>
+                  <span class="pcard-arrow" aria-hidden="true">→</span>
+                </div>
+                <p class="pcard-note">this website! essays, poems and projects, a live reader count over websockets and comments on every post. pure html/css for full control, and my back tattoo in gold.</p>
+                <div class="pcard-foot">
+                  <ul class="chips"><li>html/css</li><li>node.js</li><li>websockets</li><li>instantdb</li></ul>
+                  
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="writing" id="writing">
+        <div class="wrap">
+          <p class="label"><span>III</span>Writing</p>
+          <h2>Essays, random and poems</h2>
+          <div class="writing-grid">
+            <div class="writing-col">
+              <h3>Essays</h3>
+              <a href="./posts/post1.html"><span class="num">01</span>How I made my app builder!</a>
+              <a href="./posts/post2.html"><span class="num">02</span>Hacktoberfest with beqa!</a>
+              <a href="./posts/post3.html"><span class="num">03</span>How I transcribed my grandmother's book using AI</a>
+            </div>
+            <div class="writing-col">
+              <h3>Random</h3>
+              <a href="./random/random1.html"><span class="num">01</span>Within every lie there is truth</a>
+              <a href="./random/random2.html"><span class="num">02</span>Say something...</a>
+              <a href="./random/random3.html"><span class="num">03</span>Font of the mirror</a>
+            </div>
+            <div class="writing-col">
+              <h3>Poems</h3>
+              <a href="./poems/poem1.html"><span class="num">01</span>SF wanderer</a>
+              <a href="./poems/poem2.html"><span class="num">02</span>With every puff</a>
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="sigil sigil-ghost" aria-hidden="true"></div>
+        <div class="wrap">
+          <p class="label"><span>IV</span>Contact</p>
+          <h2>Contact me</h2>
+          <p class="contact-lede">Want to get in touch? Here's how you can reach me:</p>
+          <div class="links">
+            <a href="mailto:unseenmeli@example.com">Email me</a>
+            <a href="https://github.com/unseenmeli">GitHub</a>
+            <a href="https://www.linkedin.com/in/dave-asanidze-325b11309">LinkedIn</a>
+            <a href="https://instagram.com/meli.yd">Instagram</a>
+            <a href="https://x.com/unseenmeli_">Twitter</a>
+          </div>
+          <footer class="site-foot">
+            <p class="copyright">© 2025 Meli. All rights reserved.</p>
+            <p class="copyright">meli.sh</p>
+          </footer>
+        </div>
+      </section>
     </main>
 
-    <div class="contact">
-      <img id="img-for-contact" src="./media/index/image.png" />
-      <h3>Contact Me</h3>
-      <p>Want to get in touch? Here's how you can reach me:</p>
-      <div class="links">
-        <a href="mailto:unseenmeli@example.com">Email Me</a>
-        <a href="https://github.com/unseenmeli">GitHub</a>
-        <a
-          href="https://www.linkedin.com/in/dave-asanidze-325b11309?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-          >LinkedIn</a
-        >
-        <a href="https://instagram.com/meli.yd">Instagram</a>
-        <a href="https://x.com/unseenmeli_">Twitter</a>
-      </div>
-      <p class="copyright">Copyright 2025 Meli. All rights reserved.</p>
-    </div>
-    </div>
-    </main>
     <script type="module" src="script-persistent.js"></script>
   </body>
 </html>
